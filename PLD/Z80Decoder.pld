@@ -1,0 +1,55 @@
+Name		Z80Decoder;
+PartNo		ATF22V10C;
+Date		12.12.25;
+Revision	1;
+Designer	KrisMakesRandomStuff;
+Company	;
+Assembly	;
+Location	;
+Device		P22V10;
+
+/*	PINOUT
+		 _______
+   	  	|	  | - VCC
+    MREQ - 	|	  | - EEPROM_CS
+   IOREQ -	|	  | - RAM_CS
+      		|	  | - PIO_CS
+     A15 -	|	  | - CTC_CE
+      A7 -	|	  |
+      A6 -	|	  |
+      A5 -	|	  |
+      A4 -	|	  |
+      A3 -	|	  |
+      		|	  |	
+     GND -	|_______|
+*/
+
+/* INPUT PINS */
+PIN 2 = MREQ;
+PIN 3 = IOREQ;
+PIN 5 = A15;
+PIN 6 = A7;
+PIN 7 = A6;
+PIN 8 = A5;
+PIN 9 = A4;
+PIN 10 = A3;
+
+/* OUTPUT PINS */
+PIN 23 = EEPROM_CS;
+PIN 22 = RAM_CS;
+PIN 21 = PIO_CS;
+PIN 20 = CTC_CE;
+
+/* LOGIC EQUATIONS */
+!EEPROM_CS = !MREQ & !A15;
+!RAM_CS = !MREQ & A15;
+
+!PIO_CS = !IOREQ & !A7 & !A6 & !A5 & !A4 & A3;
+!CTC_CE = !IOREQ & !A7 & !A6 & !A5 & A4 & A3;
+ 
+
+
+
+
+
+
