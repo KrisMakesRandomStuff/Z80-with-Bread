@@ -9,19 +9,19 @@ Location	;
 Device		P22V10;
 
 /*	PINOUT
-		 _______
+		 _____
    	  	|	  | - VCC
-    MREQ - 	|	  | - EEPROM_CS
-   IOREQ -	|	  | - RAM_CS
-      		|	  | - PIO_CS
-     A15 -	|	  | - CTC_CE
-      A7 -	|	  |
-      A6 -	|	  |
-      A5 -	|	  |
-      A4 -	|	  |
-      A3 -	|	  |
-      		|	  |	
-     GND -	|_______|
+ MREQ - |	  | - EEPROM_CS
+IOREQ -	|	  | - RAM_CS
+ 		|	  | - PIO_CS
+A15 -	|	  | - CTC_CE
+A7 -	|	  | - SIO_CE
+A6 -	|	  |
+A5 -	|	  |
+A4 -	|	  |
+A3 -	|	  |
+		|	  |	
+GND -	|_____|
 */
 
 /* INPUT PINS */
@@ -39,6 +39,7 @@ PIN 23 = EEPROM_CS;
 PIN 22 = RAM_CS;
 PIN 21 = PIO_CS;
 PIN 20 = CTC_CE;
+PIN 19 = SIO_CE;
 
 /* LOGIC EQUATIONS */
 !EEPROM_CS = !MREQ & !A15;
@@ -46,10 +47,4 @@ PIN 20 = CTC_CE;
 
 !PIO_CS = !IOREQ & !A7 & !A6 & !A5 & !A4 & A3;
 !CTC_CE = !IOREQ & !A7 & !A6 & !A5 & A4 & A3;
- 
-
-
-
-
-
-
+!SIO_CE = !IOREQ & !A7 & !A6 & !A5 & A4 & !A3;
